@@ -1,0 +1,497 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: https://mosquitto.org/man/mosquitto-8.html
+Subject: mosquitto
+Date: Tue, 27 Apr 2021 21:13:53 -0000
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--CPdDTP05Cn6OOsQFe4ruL8pWbOzvgzTUc7ng8N8qpb----"
+
+
+------MultipartBoundary--CPdDTP05Cn6OOsQFe4ruL8pWbOzvgzTUc7ng8N8qpb----
+Content-Type: text/html
+Content-ID: <frame-A1118E499EA5FEC302F670890604ED23@mhtml.blink>
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://mosquitto.org/man/mosquitto-8.html
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
+=3DUTF-8">
+
+<title>mosquitto</title>
+<link rel=3D"stylesheet" type=3D"text/css" href=3D"https://mosquitto.org/ma=
+n/man.css">
+<meta name=3D"generator" content=3D"DocBook XSL Stylesheets V1.79.1">
+</head>
+<body bgcolor=3D"white" text=3D"black" link=3D"#0000FF" vlink=3D"#840084" a=
+link=3D"#0000FF"><div class=3D"refentry">
+<a name=3D"mosquitto"></a><div class=3D"titlepage"></div>
+<div class=3D"refnamediv">
+<h2>Name</h2>
+<p>mosquitto =E2=80=94 an MQTT broker</p>
+</div>
+<div class=3D"refsynopsisdiv">
+<h2>Synopsis</h2>
+<div class=3D"cmdsynopsis"><p><code class=3D"command">mosquitto</code>  [-c=
+ <em class=3D"replaceable"><code>config file</code></em>] [ -d  |   --daemo=
+n ] [-p <em class=3D"replaceable"><code>port number</code></em>] [-v]</p></=
+div>
+</div>
+<div class=3D"refsect1">
+<a name=3D"idm21"></a><h2>Description</h2>
+<p><span class=3D"command"><strong>mosquitto</strong></span> is a broker fo=
+r the MQTT protocol version 3.1.1/3.1.</p>
+</div>
+<div class=3D"refsect1">
+<a name=3D"idm25"></a><h2>Options</h2>
+<div class=3D"variablelist"><dl class=3D"variablelist">
+<dt>
+<span class=3D"term"><code class=3D"option">-c</code>, </span><span class=
+=3D"term"><code class=3D"option">--config-file</code></span>
+</dt>
+<dd><p>Load configuration from a file. If not given, the default values as =
+described in <span class=3D"citerefentry"><span class=3D"refentrytitle">mos=
+quitto.conf</span>(5)</span> are used.</p></dd>
+<dt>
+<span class=3D"term"><code class=3D"option">-d</code>, </span><span class=
+=3D"term"><code class=3D"option">--daemon</code></span>
+</dt>
+<dd><p>Run <span class=3D"command"><strong>mosquitto</strong></span> in the=
+ background as a daemon. All other behaviour remains the same.</p></dd>
+<dt>
+<span class=3D"term"><code class=3D"option">-p</code>, </span><span class=
+=3D"term"><code class=3D"option">--port</code></span>
+</dt>
+<dd><p>Listen on the port specified instead of the default 1883. This acts =
+in addition to the port setting in the config file. May be specified multip=
+le times to open multiple sockets listening on different ports. This socket=
+ will be bound to all network interfaces.</p></dd>
+<dt>
+<span class=3D"term"><code class=3D"option">-v</code>, </span><span class=
+=3D"term"><code class=3D"option">--verbose</code></span>
+</dt>
+<dd><p>Use verbose logging. This is equivalent to setting
+						<code class=3D"option">log_type</code> to <code class=3D"option">all<=
+/code> in
+						the configuration file. This overrides and logging
+						options given in the configuration file.</p></dd>
+</dl></div>
+</div>
+<div class=3D"refsect1">
+<a name=3D"idm62"></a><h2>Configuration</h2>
+<p>The broker can be configured using a configuration file as
+			described in
+			<span class=3D"citerefentry"><span class=3D"refentrytitle">mosquitto.con=
+f</span>(5)</span>
+			and this is the main point of information for mosquitto.
+			The files required for SSL/TLS support are described in=20
+			<span class=3D"citerefentry"><span class=3D"refentrytitle">mosquitto-tls=
+</span>(7)</span>.
+		</p>
+</div>
+<div class=3D"refsect1">
+<a name=3D"idm71"></a><h2>Broker Status</h2>
+<p>Clients can find information about the broker by subscribing to
+		topics in the $SYS hierarchy as follows. Topics marked as static are
+		only sent once per client on subscription. All other topics are updated
+		every <code class=3D"option">sys_interval</code> seconds. If
+		<code class=3D"option">sys_interval</code> is 0, then updates are not sen=
+t.</p>
+<p>Note that if you are using a command line client to interact with the
+			$SYS topics and your shell interprets $ as an environment variable,
+			you need to place the topic in single quotes '$SYS/...' or to
+			escape the dollar symbol: \$SYS/... otherwise the $SYS will be
+			treated as an environment variable.</p>
+<div class=3D"variablelist"><dl class=3D"variablelist">
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/bytes/received<=
+/code></span></dt>
+<dd><p>The total number of bytes received since the broker
+					started.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/bytes/sent</cod=
+e></span></dt>
+<dd><p>The total number of bytes sent since the broker
+					started.</p></dd>
+<dt>
+<span class=3D"term"><code class=3D"option">$SYS/broker/clients/connected</=
+code>, </span><span class=3D"term"><code class=3D"option">$SYS/broker/clien=
+ts/active</code> (deprecated)</span>
+</dt>
+<dd><p>The number of currently connected clients.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/clients/expired=
+</code></span></dt>
+<dd><p>The number of disconnected persistent clients that
+						have been expired and removed through the
+						persistent_client_expiration option.</p></dd>
+<dt>
+<span class=3D"term"><code class=3D"option">$SYS/broker/clients/disconnecte=
+d</code>, </span><span class=3D"term"><code class=3D"option">$SYS/broker/cl=
+ients/inactive</code> (deprecated)</span>
+</dt>
+<dd><p>The total number of persistent clients (with clean
+					session disabled) that are registered at the broker but are
+					currently disconnected.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/clients/maximum=
+</code></span></dt>
+<dd><p>The maximum number of clients that have been
+						connected to the broker at the same time.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/clients/total</=
+code></span></dt>
+<dd><p>The total number of active and inactive clients
+						currently connected and registered on the
+						broker.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/connection/#</c=
+ode></span></dt>
+<dd><p>When bridges are configured to/from the broker,
+						common practice is to provide a status topic that
+						indicates the state of the connection. This is provided
+						within $SYS/broker/connection/ by default. If the value
+						of the topic is 1 the connection is active, if 0 then
+						it is not active. See the Bridges section below for
+						more information on bridges.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/heap/current si=
+ze</code></span></dt>
+<dd><p>The current size of the heap memory in use by
+					mosquitto. Note that this topic may be unavailable
+					depending on compile time options.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/heap/maximum si=
+ze</code></span></dt>
+<dd><p>The largest amount of heap memory used by
+					mosquitto. Note that this topic may be unavailable
+					depending on compile time options.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/load/connection=
+s/+</code></span></dt>
+<dd><p>The moving average of the number of CONNECT packets
+						received by the broker over different time intervals.
+						The final "+" of the hierarchy can be 1min, 5min or
+						15min. The value returned represents the number of
+						connections received in 1 minute, averaged over 1, 5 or
+						15 minutes.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/load/bytes/rece=
+ived/+</code></span></dt>
+<dd><p>The moving average of the number of bytes received by
+						the broker over different time intervals. The final "+"
+						of the hierarchy can be 1min, 5min or 15min. The value
+						returned represents the number of bytes received in 1
+						minute, averaged over 1, 5 or 15 minutes.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/load/bytes/sent=
+/+</code></span></dt>
+<dd><p>The moving average of the number of bytes sent by the
+						broker over different time intervals. The final "+" of
+						the hierarchy can be 1min, 5min or 15min. The value
+						returned represents the number of bytes sent in 1
+						minute, averaged over 1, 5 or 15 minutes.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/load/messages/r=
+eceived/+</code></span></dt>
+<dd><p>The moving average of the number of all types of MQTT
+						messages received by the broker over different time
+						intervals.  The final "+" of the hierarchy can be 1min,
+						5min or 15min. The value returned represents the number
+						of messages received in 1 minute, averaged over 1, 5 or
+						15 minutes.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/load/messages/s=
+ent/+</code></span></dt>
+<dd><p>The moving average of the number of all types of MQTT
+						messages sent by the broker over different time
+						intervals. The final "+" of the hierarchy can be 1min,
+						5min or 15min. The value returned represents the number
+						of messages send in 1 minute, averaged over 1, 5 or 15
+						minutes.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/load/publish/dr=
+opped/+</code></span></dt>
+<dd><p>The moving average of the number of publish messages
+						dropped by the broker over different time intervals.
+						This shows the rate at which durable clients that are
+						disconnected are losing messages. The final "+" of the
+						hierarchy can be 1min, 5min or 15min. The value
+						returned represents the number of messages dropped in 1
+						minute, averaged over 1, 5 or 15 minutes.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/load/publish/re=
+ceived/+</code></span></dt>
+<dd><p>The moving average of the number of publish messages
+						received by the broker over different time intervals.
+						The final "+" of the hierarchy can be 1min, 5min or
+						15min. The value returned represents the number of
+						publish messages received in 1 minute, averaged over 1,
+						5 or 15 minutes.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/load/publish/se=
+nt/+</code></span></dt>
+<dd><p>The moving average of the number of publish messages
+						sent by the broker over different time intervals. The
+						final "+" of the hierarchy can be 1min, 5min or 15min.
+						The value returned represents the number of publish
+						messages sent in 1 minute, averaged over 1, 5 or 15
+						minutes.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/load/sockets/+<=
+/code></span></dt>
+<dd><p>The moving average of the number of socket
+						connections opened to the broker over different time
+						intervals. The final "+" of the hierarchy can be 1min,
+						5min or 15min. The value returned represents the number
+						of socket connections in 1 minute, averaged over 1, 5
+						or 15 minutes.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/messages/inflig=
+ht</code></span></dt>
+<dd><p>The number of messages with QoS&gt;0 that are awaiting
+					acknowledgments.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/messages/receiv=
+ed</code></span></dt>
+<dd><p>The total number of messages of any type received since the broker s=
+tarted.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/messages/sent</=
+code></span></dt>
+<dd><p>The total number of messages of any type sent since the broker start=
+ed.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/publish/message=
+s/dropped</code></span></dt>
+<dd><p>The total number of publish messages that have been
+						dropped due to inflight/queuing limits. See the
+						max_inflight_messages and max_queued_messages options
+						in
+						<span class=3D"citerefentry"><span class=3D"refentrytitle">mosquitto.=
+conf</span>(5)</span>
+						for more information.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/publish/message=
+s/received</code></span></dt>
+<dd><p>The total number of PUBLISH messages received since the broker start=
+ed.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/publish/message=
+s/sent</code></span></dt>
+<dd><p>The total number of PUBLISH messages sent since the broker started.<=
+/p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/retained messag=
+es/count</code></span></dt>
+<dd><p>The total number of retained messages active on the broker.</p></dd>
+<dt>
+<span class=3D"term"><code class=3D"option">$SYS/broker/store/messages/coun=
+t</code>, </span><span class=3D"term"><code class=3D"option">$SYS/broker/me=
+ssages/stored</code> (deprecated)</span>
+</dt>
+<dd><p>The number of messages currently held in the message
+						store. This includes retained messages and messages
+						queued for durable clients.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/store/messages/=
+bytes</code></span></dt>
+<dd><p>The number of bytes currently held by message payloads
+                                            in the message store. This incl=
+udes retained messages
+                                            and messages queued for durable=
+ clients.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/subscriptions/c=
+ount</code></span></dt>
+<dd><p>The total number of subscriptions active on the broker.</p></dd>
+<dt><span class=3D"term"><code class=3D"option">$SYS/broker/version</code><=
+/span></dt>
+<dd><p>The version of the broker. Static.</p></dd>
+</dl></div>
+</div>
+<div class=3D"refsect1">
+<a name=3D"idm237"></a><h2>Wildcard Topic Subscriptions</h2>
+<p>In addition to allowing clients to subscribe to specific topics,
+		mosquitto also allows the use of two wildcards in subscriptions.
+		<code class=3D"option">+</code> is the wildcard used to match a single le=
+vel of
+		hierarchy. For example, for a topic of "a/b/c/d", the following example
+		subscriptions will match:</p>
+<div class=3D"itemizedlist"><ul class=3D"itemizedlist" style=3D"list-style-=
+type: circle; ">
+<li class=3D"listitem" style=3D"list-style-type: circle"><p>a/b/c/d</p></li=
+>
+<li class=3D"listitem" style=3D"list-style-type: circle"><p>+/b/c/d</p></li=
+>
+<li class=3D"listitem" style=3D"list-style-type: circle"><p>a/+/c/d</p></li=
+>
+<li class=3D"listitem" style=3D"list-style-type: circle"><p>a/+/+/d</p></li=
+>
+<li class=3D"listitem" style=3D"list-style-type: circle"><p>+/+/+/+</p></li=
+>
+</ul></div>
+<p>The following subscriptions will not match:</p>
+<div class=3D"itemizedlist"><ul class=3D"itemizedlist" style=3D"list-style-=
+type: circle; ">
+<li class=3D"listitem" style=3D"list-style-type: circle"><p>a/b/c</p></li>
+<li class=3D"listitem" style=3D"list-style-type: circle"><p>b/+/c/d</p></li=
+>
+<li class=3D"listitem" style=3D"list-style-type: circle"><p>+/+/+</p></li>
+</ul></div>
+<p>The second wildcard is <code class=3D"option">#</code> and is used to ma=
+tch
+		all subsequent levels of hierarchy. With a topic of "a/b/c/d", the
+		following example subscriptions will match:</p>
+<div class=3D"itemizedlist"><ul class=3D"itemizedlist" style=3D"list-style-=
+type: circle; ">
+<li class=3D"listitem" style=3D"list-style-type: circle"><p>a/b/c/d</p></li=
+>
+<li class=3D"listitem" style=3D"list-style-type: circle"><p>#</p></li>
+<li class=3D"listitem" style=3D"list-style-type: circle"><p>a/#</p></li>
+<li class=3D"listitem" style=3D"list-style-type: circle"><p>a/b/#</p></li>
+<li class=3D"listitem" style=3D"list-style-type: circle"><p>a/b/c/#</p></li=
+>
+<li class=3D"listitem" style=3D"list-style-type: circle"><p>+/b/c/#</p></li=
+>
+</ul></div>
+<p>The $SYS hierarchy does not match a subscription of
+		"#". If you want to observe the entire $SYS hierarchy, subscribe to
+		$SYS/#.</p>
+<p>Note that the wildcards must be only ever used on their own, so a
+		subscription of "a/b+/c" is not valid use of a wildcard. The
+		<code class=3D"option">#</code> wildcard must only ever be used as the fi=
+nal
+		character of a subscription.</p>
+</div>
+<div class=3D"refsect1">
+<a name=3D"idm278"></a><h2>Bridges</h2>
+<p>Multiple brokers can be connected together with the bridging
+		functionality. This is useful where it is desirable to share
+		information between locations, but where not all of the information
+		needs to be shared. An example could be where a number of users are
+		running a broker to help record power usage and for a number of other
+		reasons. The power usage could be shared through bridging all of the
+		user brokers to a common broker, allowing the power usage of all
+		users to be collected and compared. The other information would remain
+		local to each
+		broker.</p>
+<p>For information on configuring bridges, see
+		<span class=3D"citerefentry"><span class=3D"refentrytitle">mosquitto.conf=
+</span>(5)</span>.</p>
+</div>
+<div class=3D"refsect1">
+<a name=3D"idm285"></a><h2>Signals</h2>
+<div class=3D"variablelist"><dl class=3D"variablelist">
+<dt><span class=3D"term">SIGHUP</span></dt>
+<dd><p>Upon receiving the SIGHUP signal, mosquitto will
+					attempt to reload configuration file data, assuming that
+					the <code class=3D"option">-c</code> argument was provided when
+					mosquitto was started. Not all configuration parameters can
+					be reloaded without restarting. See
+					<span class=3D"citerefentry"><span class=3D"refentrytitle">mosquitto.c=
+onf</span>(5)</span>
+					for details.</p></dd>
+<dt><span class=3D"term">SIGUSR1</span></dt>
+<dd><p>Upon receiving the SIGUSR1 signal, mosquitto will
+					write the persistence database to disk. This signal is only
+					acted upon if persistence is enabled.</p></dd>
+<dt><span class=3D"term">SIGUSR2</span></dt>
+<dd><p>The SIGUSR2 signal causes mosquitto to print out the
+					current subscription tree, along with information about
+					where retained messages exist. This is intended as a
+					testing feature only and may be removed at any time.</p></dd>
+</dl></div>
+</div>
+<div class=3D"refsect1">
+<a name=3D"idm304"></a><h2>Files</h2>
+<div class=3D"variablelist"><dl class=3D"variablelist">
+<dt><span class=3D"term"><code class=3D"filename">/etc/mosquitto/mosquitto.=
+conf</code></span></dt>
+<dd><p>Configuration file. See <span class=3D"citerefentry"><span class=3D"=
+refentrytitle">mosquitto.conf</span>(5)</span>.</p></dd>
+<dt><span class=3D"term"><code class=3D"filename">/var/lib/mosquitto/mosqui=
+tto.db</code></span></dt>
+<dd><p>Persistent message data storage location if persist enabled.</p></dd=
+>
+<dt>
+<span class=3D"term"><code class=3D"filename">/etc/hosts.allow</code>, </sp=
+an><span class=3D"term"><code class=3D"filename">/etc/hosts.deny</code></sp=
+an>
+</dt>
+<dd><p>Host access control via tcp-wrappers as described in <span class=3D"=
+citerefentry"><span class=3D"refentrytitle">hosts_access</span>(5)</span>.<=
+/p></dd>
+</dl></div>
+</div>
+<div class=3D"refsect1">
+<a name=3D"idm330"></a><h2>Bugs</h2>
+<p><span class=3D"command"><strong>mosquitto</strong></span> bug informatio=
+n can be found at
+			<a class=3D"ulink" href=3D"https://github.com/eclipse/mosquitto/issues" =
+target=3D"_top">https://github.com/eclipse/mosquitto/issues</a></p>
+</div>
+<div class=3D"refsect1">
+<a name=3D"idm335"></a><h2>See Also</h2>
+<span class=3D"simplelist">
+				<span class=3D"citerefentry"><span class=3D"refentrytitle"><a class=3D"=
+link" href=3D"https://mosquitto.org/man/mqtt-7.html" target=3D"_top">mqtt</=
+a></span>(7)</span>
+			,=20
+				<span class=3D"citerefentry"><span class=3D"refentrytitle"><a class=3D"=
+link" href=3D"https://mosquitto.org/man/mosquitto-tls-7.html" target=3D"_to=
+p">mosquitto-tls</a></span>(7)</span>
+			,=20
+				<span class=3D"citerefentry"><span class=3D"refentrytitle"><a class=3D"=
+link" href=3D"https://mosquitto.org/man/mosquitto-conf-5.html" target=3D"_t=
+op">mosquitto.conf</a></span>(5)</span>
+			,=20
+				<span class=3D"citerefentry"><span class=3D"refentrytitle"><a class=3D"=
+link" href=3D"https://linux.die.net/man/5/hosts_access" target=3D"_top">hos=
+ts_access</a></span>(5)</span>
+			,=20
+				<span class=3D"citerefentry"><span class=3D"refentrytitle"><a class=3D"=
+link" href=3D"https://mosquitto.org/man/mosquitto_passwd-1.html" target=3D"=
+_top">mosquitto_passwd</a></span>(1)</span>
+			,=20
+				<span class=3D"citerefentry"><span class=3D"refentrytitle"><a class=3D"=
+link" href=3D"https://mosquitto.org/man/mosquitto_pub-1.html" target=3D"_to=
+p">mosquitto_pub</a></span>(1)</span>
+			,=20
+				<span class=3D"citerefentry"><span class=3D"refentrytitle"><a class=3D"=
+link" href=3D"https://mosquitto.org/man/mosquitto_sub-1.html" target=3D"_to=
+p">mosquitto_sub</a></span>(1)</span>
+			,=20
+				<span class=3D"citerefentry"><span class=3D"refentrytitle"><a class=3D"=
+link" href=3D"https://mosquitto.org/man/libmosquitto-3.html" target=3D"_top=
+">libmosquitto</a></span>(3)</span>
+			</span>
+</div>
+<div class=3D"refsect1">
+<a name=3D"idm378"></a><h2>Thanks</h2>
+<p>Thanks to Andy Stanford-Clark for being one of the people who
+			came up with MQTT in the first place. Thanks to Andy and Nicholas
+			O'Leary for providing clarifications of the protocol.</p>
+<p>Thanks also to everybody at the Ubuntu UK Podcast and Linux
+			Outlaws for organising OggCamp, where Andy gave a talk that
+			inspired mosquitto.</p>
+</div>
+<div class=3D"refsect1">
+<a name=3D"idm382"></a><h2>Author</h2>
+<p>Roger Light <code class=3D"email">&lt;<a class=3D"email" href=3D"mailto:=
+roger@atchoo.org">roger@atchoo.org</a>&gt;</code></p>
+</div>
+</div>
+
+</body></html>
+------MultipartBoundary--CPdDTP05Cn6OOsQFe4ruL8pWbOzvgzTUc7ng8N8qpb----
+Content-Type: text/css
+Content-Transfer-Encoding: quoted-printable
+Content-Location: https://mosquitto.org/man/man.css
+
+@charset "utf-8";
+
+body { font-family: "Bitstream Vera Sans", "DejaVu Sans", Tahoma, sans-seri=
+f; }
+
+.refentry { margin: auto; width: 40rem; }
+
+.titlepage { }
+
+.refnamediv { }
+
+.refsynopsisdiv { }
+
+.cmdsynopsis { margin-left: 30px; }
+
+.command { }
+
+.refsect1 { }
+
+.itemizedlist { }
+
+.listitem { }
+
+.option { }
+
+.citerefentry { }
+
+.link { }
+
+.uri { }
+
+code.email { }
+------MultipartBoundary--CPdDTP05Cn6OOsQFe4ruL8pWbOzvgzTUc7ng8N8qpb------
